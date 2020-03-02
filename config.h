@@ -39,7 +39,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "surf",     NULL,       NULL,       0,            1,           -1 },
+	{ "mpv",     NULL,       NULL,       0,            1,           -1 },
 	{ "chromium",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
@@ -161,7 +161,9 @@ static Key keys[] = {
 	/* { MODKEY,			XK_apostrophe,	spawn,		SHCMD("") }, */
 	/* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_Return,	spawn,		{.v = termcmd } },
-	{ MODKEY|ShiftMask,		XK_Return,	togglescratch,	{.v = scratchpadcmd } },
+	{ MODKEY|ShiftMask,		XK_Return,	spawn,		SHCMD("samedir") },
+	{ MODKEY|ControlMask,		XK_Return,	togglescratch,	{.v = scratchpadcmd } },
+
 
 			/* BOTTOM ROW */
 
