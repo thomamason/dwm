@@ -1,12 +1,6 @@
-# Luke's build of dwm
+# Tom's build of dwm
 
-Here's my build of dwm.
-
-## FAQ
-
-> What are the bindings?
-
-This is suckless, mmmbud, the source code is the documentation! Check out `config.h`.
+Based on Luke Smith's (lukesmith.xyz) build of Dwm. Gaps support is there but I don't use them.
 
 ## Patches and features
 
@@ -19,3 +13,4 @@ This is suckless, mmmbud, the source code is the documentation! Check out `confi
 - shiftview to cycle tags
 - gaps around windows and bar
 - dwmc
+- added system tray support
