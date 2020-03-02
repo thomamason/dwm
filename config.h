@@ -10,6 +10,10 @@ static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int showsystray        = 1;     /* 0 means no systray */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
 static const char *fonts[]          = { "Terminess TTF Nerd Font Mono:size=10", "monospace:pixelsize=10:antialias=true:autohint=true"  };
@@ -47,13 +51,9 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 #include "fibonacci.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+	{ "[@]",      spiral },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
- 	{ "[@]",      spiral },
- 	{ "[\\]",      dwindle },
+ 	{ "[tile]",      tile },
 };
 
 /* key definitions */
@@ -122,15 +122,15 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD("tutorialvids") },*/
 	{ MODKEY,			XK_r,		spawn,		SHCMD("st -e $FILE") },
 	/* { MODKEY|ShiftMask,		XK_r,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[5]} },
+	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} },
 	/* { MODKEY|ShiftMask,		XK_t,		spawn,		SHCMD("") }, */
 	/* { MODKEY,			XK_y,		spawn,		SHCMD("") }, */
 	/* { MODKEY|ShiftMask,		XK_y,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_u,		setlayout,	{.v = &layouts[6]} },
+	{ MODKEY,			XK_u,		setlayout,	{.v = &layouts[1]} },
 	/* { MODKEY|ShiftMask,		XK_u,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_i,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_i,		incnmaster,     {.i = -1 } },
-	{ MODKEY,			XK_o,		setlayout,	{.v = &layouts[3]} },
+	{ MODKEY,			XK_o,		setlayout,	{.v = &layouts[2]} },
 	/* { MODKEY|ShiftMask,		XK_o,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_p,			spawn,		SHCMD("mpc toggle") },
 	{ MODKEY|ShiftMask,		XK_p,			spawn,		SHCMD("mpc pause ; pauseallmpv") },
