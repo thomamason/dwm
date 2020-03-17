@@ -37,7 +37,7 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", };
+static const char *tags[] = { "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -56,12 +56,13 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 #include "fibonacci.c"
+#include "grid.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]",      spiral },    /* first entry is default */
 	{ "[]",      NULL },    /* no layout function means floating behavior */
-	{ "[]",      tile },
-	{ NULL,       NULL },
+	{ "[]",      tile },
+	{ "[]",      grid },
 };
 
 /* key definitions */
