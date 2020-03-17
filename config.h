@@ -86,7 +86,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", selbgcolor, "-nf", selfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+/*static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", selbgcolor, "-nf", selfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };*/
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
@@ -116,11 +117,8 @@ static Key keys[] = {
 
 	{ MODKEY,			XK_Tab,		view,		{0} },
 	{ MODKEY,			XK_q,		killclient,	{0} },
-	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} },
-	{ MODKEY,			XK_u,		setlayout,	{.v = &layouts[1]} },
 	{ MODKEY,			XK_i,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_i,		incnmaster,     {.i = -1 } },
-	{ MODKEY,			XK_o,		setlayout,	{.v = &layouts[2]} },
 
 			/*HOME ROW */
 
