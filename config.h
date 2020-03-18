@@ -44,10 +44,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      	instance    	title       tags mask     isfloating   monitor */
+	/* class      	instance     title          tags mask     isfloating   monitor */
 	{ "mpv",         NULL, 	    "mpvfloat",            0,        1,           -1 },
 	{ "chromium",    NULL,            NULL,       1 << 8,        0,           -1 },
-	{ "st",          NULL,    "cmus v2.8.0",       5 << 0,       0,           -1 },
+	{ "st",          NULL,   "cmus v2.8.0",       2 << 0,        0,           -1 },
+	{ "nicotine",    NULL,   	  NULL,       2 << 0,        0,           -1 },
 };
 
 /* layout(s) */
@@ -57,13 +58,11 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 #include "fibonacci.c"
 #include "grid.c"
-#include "gaplessgrid.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]",      spiral },    /* first entry is default */
-	{ "[]",      gaplessgrid },
-	{ "[]",      grid },
 	{ "[]",      tile },
+	{ "[]",      grid },
 	{ "[]",      NULL },    /* no layout function means floating behavior */
 };
 
@@ -80,8 +79,7 @@ static const Layout layouts[] = {
 #define STACKKEYS(MOD,ACTION) \
 	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \
 	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \
-	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } }, \
-	{ MODKEY|ControlMask,		XK_period,  cyclelayout,    {.i = -1 } }, \
+	{ MOD,	XK_period,  cyclelayout,    {.i = -1 } }, \
 	/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
 	/* { MOD, XK_q,     ACTION##stack, {.i = 0 } }, \ */
 	/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
