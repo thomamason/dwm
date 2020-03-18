@@ -37,17 +37,17 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "mpv",     NULL,       NULL,       0,            1,           -1 },
-	{ "chromium",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "st",  NULL,       "cmus v2.8.0",       5,       0,           -1 },
+	/* class      	instance    	title       tags mask     isfloating   monitor */
+	{ "mpv",         NULL, 	    "mpvfloat",            0,        1,           -1 },
+	{ "chromium",    NULL,            NULL,       1 << 8,        0,           -1 },
+	{ "st",          NULL,    "cmus v2.8.0",       5 << 0,       0,           -1 },
 };
 
 /* layout(s) */
@@ -59,10 +59,10 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 #include "grid.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]",      spiral },    /* first entry is default */
-	{ "[]",      NULL },    /* no layout function means floating behavior */
-	{ "[]",      tile },
+	{ "[]",      spiral },    /* first entry is default */
 	{ "[]",      grid },
+	{ "[]",      tile },
+	{ "[]",      NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -70,12 +70,16 @@ static const Layout layouts[] = {
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 #define STACKKEYS(MOD,ACTION) \
 	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \
 	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \
-	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
+	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } }, \
+	{ MODKEY|ControlMask,		XK_period,  cyclelayout,    {.i = -1 } }, \
 	/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
 	/* { MOD, XK_q,     ACTION##stack, {.i = 0 } }, \ */
 	/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
@@ -253,10 +257,6 @@ static Signal signals[] = {
 	{ "toggleview",     view },
 	{ "toggleviewex",   toggleviewex },
 	{ "tag",            tag },
-	{ "tagall",         tagall },
-	{ "tagex",          tagex },
-	{ "toggletag",      tag },
-	{ "toggletagex",    toggletagex },
 	{ "killclient",     killclient },
 	{ "quit",           quit },
 	{ "setlayout",      setlayout },
