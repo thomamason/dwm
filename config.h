@@ -16,7 +16,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
-static const char *fonts[]          = { "Terminess TTF Nerd Font Mono:size=10", "monospace:pixelsize=10:antialias=true:autohint=true"  };
+static const char *fonts[]          = { "Terminess TTF Nerd Font Mono:size=10", "monospace:pixelsize=12:antialias=true:autohint=true"  };
 static char dmenufont[]       = "Terminess TTF Nerd Font Mono:size=10";
 static char normfgcolor[]	    = "#eeeeee";
 static char normbgcolor[]	    = "#eeeeee";
@@ -37,7 +37,7 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -46,9 +46,12 @@ static const Rule rules[] = {
 	 */
 	/* class      	instance     title          tags mask     isfloating   monitor */
 	{ "mpv",         NULL, 	    "mpvfloat",            0,        1,           -1 },
-	{ "chromium",    NULL,            NULL,       1 << 8,        0,           -1 },
-	{ "st",          NULL,   "cmus v2.8.0",       2 << 0,        0,           -1 },
-	{ "nicotine",    NULL,   	  NULL,       2 << 0,        0,           -1 },
+	{ "chromium",    NULL,            NULL,       	   0,        0,           -1 },
+	{ NULL,          "st",   "cmus",       1 << 2,        0,           -1 },
+	{ NULL,          "st",   "newsboat",          1 << 1,        0,           -1 },
+	{ "Nicotine",    NULL,   	  NULL,       1 << 2,        0,           -1 },
+	{ "Steam",       NULL,   	  NULL,       1 << 4,        0,           -1 },
+	{ "realvnc-vncviewer",    NULL,   NULL,       1 << 5,        0,           -1 },
 };
 
 /* layout(s) */
