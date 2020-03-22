@@ -37,7 +37,7 @@ static char *colors[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -45,13 +45,14 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      	instance     title          tags mask     isfloating   monitor */
-	{ "mpv",         NULL, 	    "mpvfloat",            0,        1,           -1 },
-	{ "chromium",    NULL,            NULL,       	   0,        0,           -1 },
-	{ NULL,          "st",   "cmus",       1 << 2,        0,           -1 },
-	{ NULL,          "st",   "newsboat",          1 << 1,        0,           -1 },
-	{ "Nicotine",    NULL,   	  NULL,       1 << 2,        0,           -1 },
-	{ "Steam",       NULL,   	  NULL,       1 << 4,        0,           -1 },
-	{ "realvnc-vncviewer",    NULL,   NULL,       1 << 5,        0,           -1 },
+	{ NULL,         NULL, 	    "mpvfloat",             0,        1,           -1 },
+	{ NULL,          "st",   	"cmus",        1 << 1,        0,           -1 },
+	{ "Nicotine",    NULL,   	  NULL,        1 << 1,        0,           -1 },
+	{ "Steam",       NULL,   	  NULL,        1 << 2,        0,           -1 },
+	{ "discord",       NULL,   	  NULL,        1 << 2,        0,           -1 },
+	{ "realvnc-vncviewer", NULL,"ThomMSI (THOMMSI) - VNC Viewer", 1 << 3, 0,   -1 },
+	{ "realvnc-vncviewer", "VNC Viewer", "VNC Viewer",  1 << 4,   0,           -1 },
+	{ "VirtualBox Manager",   NULL,   NULL,        1 << 4,        0,           -1 },
 };
 
 /* layout(s) */
@@ -64,7 +65,7 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]",      spiral },    /* first entry is default */
-	{ "[]",      tile },
+	{ "[]",      tile },
 	{ "[]",      grid },
 	{ "[]",      NULL },    /* no layout function means floating behavior */
 };
