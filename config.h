@@ -49,7 +49,8 @@ static const Rule rules[] = {
 	{ NULL,          "st",   	"cmus",        1 << 1,        0,           -1 },
 	{ "Nicotine",    NULL,   	  NULL,        1 << 1,        0,           -1 },
 	{ "Steam",       NULL,   	  NULL,        1 << 2,        0,           -1 },
-	{ "discord",       NULL,   	  NULL,        1 << 2,        0,           -1 },
+	{ "TeamSpeak 3",       NULL,   	  NULL,        1 << 2,        0,           -1 },
+	{ "Franz",       NULL,   	  NULL,        1 << 4,        0,           -1 },
 	{ "realvnc-vncviewer", NULL,"ThomMSI (THOMMSI) - VNC Viewer", 1 << 3, 0,   -1 },
 	{ "realvnc-vncviewer", "VNC Viewer", "VNC Viewer",  1 << 4,   0,           -1 },
 	{ "VirtualBox Manager",   NULL,   NULL,        1 << 4,        0,           -1 },
@@ -95,8 +96,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-/*static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", selbgcolor, "-nf", selfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };*/
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", selbgcolor, "-nf", selfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
