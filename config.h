@@ -5,7 +5,7 @@ static const unsigned int gappih    = 0;       /* horiz inner gap between window
 static const unsigned int gappiv    = 0;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 0;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 0;       /* vert outer gap between windows and screen edge */
-static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
+static const int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -16,28 +16,28 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
-static const char *fonts[]          = { "Terminess TTF Nerd Font Mono:size=10", "monospace:pixelsize=12:antialias=true:autohint=true"  };
+static const char *fonts[]          = { "Terminess TTF Nerd Font Mono:size=10", "monospace:pixelsize=12:antialias=true:autohint=true", "fontawesome:size=12" };
 static char dmenufont[]       = "Terminess TTF Nerd Font Mono:size=10";
 static char normfgcolor[]	    = "#eeeeee";
 static char normbgcolor[]	    = "#eeeeee";
 static char normbordercolor[]	    = "#E4737B";
 static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#E4737B";
+static char selbordercolor[]        = "#FF0000";
 static char selbgcolor[]            = "#535657";
 static const char col_gray1[]       = "#15171f";
 static const char col_gray2[]       = "#000000"; /* border color unfocused windows */
 static const char col_gray3[]       = "#96b5b4";
 static const char col_gray4[]       = "#c0c5ce";
-static const char col_cyan[]        = "#924441"; /* border color focused windows and tags */
+static const char col_red[]         = "#FF0000"; /* border color focused windows and tags */
 
 static char *colors[][3] = {
        /*               fg           bg           border   */
-	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
+	[SchemeNorm] = { col_gray4, col_gray1, col_gray2},
 	[SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -46,14 +46,14 @@ static const Rule rules[] = {
 	 */
 	/* class      	instance     title          tags mask     isfloating   monitor */
 	{ NULL,         NULL, 	    "mpvfloat",             0,        1,           -1 },
-	{ NULL,          "st",   	"cmus",        1 << 1,        0,           -1 },
-	{ "Nicotine",    NULL,   	  NULL,        1 << 1,        0,           -1 },
-	{ "Steam",       NULL,   	  NULL,        1 << 2,        0,           -1 },
-	{ "TeamSpeak 3",       NULL,   	  NULL,        1 << 2,        0,           -1 },
-	{ "Franz",       NULL,   	  NULL,        1 << 4,        0,           -1 },
-	{ "realvnc-vncviewer", NULL,"ThomMSI (THOMMSI) - VNC Viewer", 1 << 3, 0,   -1 },
+	{ NULL,          "st",   	"cmus",        1 << 5,        0,           -1 },
+	{ "obs",        "obs",   	  NULL,        1 << 3,        0,           -1 },
+	{ "Nicotine",    NULL,   	  NULL,        1 << 5,        0,           -1 },
+	{ "Steam",       NULL,   	  NULL,        1 << 2,        1,           -1 },
+	{ "discord",       NULL,   	  NULL,        1 << 4,        0,           -1 },
 	{ "realvnc-vncviewer", "VNC Viewer", "VNC Viewer",  1 << 4,   0,           -1 },
-	{ "VirtualBox Manager",   NULL,   NULL,        1 << 4,        0,           -1 },
+	{ "realvnc-vncviewer", NULL, "thommsi (MSITHOM) - VNC Viewer",  1 << 4,   0,           -1 },
+	{"VirtualBox Manager",   NULL,   NULL,        1 << 4,        0,           -1 },
 };
 
 /* layout(s) */
@@ -125,7 +125,7 @@ static Key keys[] = {
 			/* TOP ROW KEYS */
 
 	{ MODKEY,			XK_Tab,		view,		{0} },
-	{ MODKEY,			XK_q,		killclient,	{0} },
+	{ MODKEY|ShiftMask,		XK_q,		killclient,	{0} },
 	{ MODKEY,			XK_i,		incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_i,		incnmaster,     {.i = -1 } },
 
