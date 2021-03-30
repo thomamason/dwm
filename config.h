@@ -17,7 +17,7 @@ static const int showsystray        = 1;     /* 0 means no systray */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
 static const char *fonts[]          = { "Terminess TTF Nerd Font Mono:size=10", "monospace:pixelsize=12:antialias=true:autohint=true", "fontawesome:size=12" };
-static char dmenufont[]       = "Terminess TTF Nerd Font Mono:size=10";
+static char dmenufont[]       = "fontawesome:size=10";
 static char normfgcolor[]	    = "#eeeeee";
 static char normbgcolor[]	    = "#eeeeee";
 static char normbordercolor[]	    = "#E4737B";
@@ -50,6 +50,7 @@ static const Rule rules[] = {
 	{ "obs",        "obs",   	  NULL,        1 << 3,        0,           -1 },
 	{ "Nicotine",    NULL,   	  NULL,        1 << 5,        0,           -1 },
 	{ "Steam",       NULL,   	  NULL,        1 << 2,        1,           -1 },
+	{ "steamlink",	"steamlink",	NULL,		1 << 2,		0,	   -1 },
 	{ "discord",       NULL,   	  NULL,        1 << 4,        0,           -1 },
 	{ "realvnc-vncviewer", "VNC Viewer", "VNC Viewer",  1 << 4,   0,           -1 },
 	{ "realvnc-vncviewer", NULL, "thommsi (MSITHOM) - VNC Viewer",  1 << 4,   0,           -1 },
@@ -84,7 +85,7 @@ static const Layout layouts[] = {
 #define STACKKEYS(MOD,ACTION) \
 	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \
 	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \
-	{ MOD,	XK_period,  cyclelayout,    {.i = -1 } }, \
+	{ MOD,	XK_p,  cyclelayout,    {.i = -1 } }, \
 	/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
 	/* { MOD, XK_q,     ACTION##stack, {.i = 0 } }, \ */
 	/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
@@ -156,13 +157,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} },
 	{ MODKEY,			XK_F2,      	quit,           {1} },
 
+			/* monitor selections */
 
 	/* { MODKEY,                       XK_space,  setlayout,      {0} }, */
 
-	/* { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } }, */
-	/* { MODKEY,                       XK_period, focusmon,       {.i = +1 } }, */
-	/* { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } }, */
-	/* { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } }, */
+	 { MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+	 { MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+	 { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+	 { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 
 	/* { MODKEY|Mod4Mask,              XK_h,      incrgaps,       {.i = +1 } }, */
 	/* { MODKEY|Mod4Mask,              XK_l,      incrgaps,       {.i = -1 } }, */
@@ -267,3 +269,4 @@ static Signal signals[] = {
 	/*{ "setlayoutex",    setlayoutex },*/
 	{ "xrdb",		xrdb },
 };
+
